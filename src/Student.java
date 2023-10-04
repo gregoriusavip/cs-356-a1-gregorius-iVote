@@ -1,12 +1,12 @@
 public class Student {
-    private String studentId;
+    private String studentID;
     public Student(String id){
-        setStudentId(id);
+        setStudentID(id);
     }
-    public String getStudentId(){
-        return studentId;
+    public String getStudentID(){
+        return studentID;
     }
-    public void setStudentId(String id){
-        this.studentId = id;
+    public void setStudentID(String id){
+        this.studentID = id;
     }
 }
