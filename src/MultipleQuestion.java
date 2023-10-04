@@ -15,6 +15,7 @@ public class MultipleQuestion implements Question{
     }
     @Override
     public List<Character> getAnswer(){
+        // Should instead return only the correct answer
         return answers;
     }
     @Override
