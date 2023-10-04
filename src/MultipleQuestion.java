@@ -1,12 +1,13 @@
 import java.util.*;
 
-public class MultipleQuestion implements Question{
+public class MultipleQuestion extends Question{
+
     List<Integer> key;
     String questionDes;
     List<String> answers;
     @Override
-    public void setQuestion(String questionDescription, List<String> answers){
-        // TODO: implement setting question
+    public void setQuestion(int a){
+
     }
     private void setAnswer(List<Integer> key){
 

@@ -1,4 +1,11 @@
 import java.util.*;
-public interface Question {
-    void setQuestion(String q, List<String> a);
+public class Question {
+    List<Character> answers;
+    public void setQuestion(int totalAnswers){
+        answers = new LinkedList<Character>();
+        char ansIndex = 'A';
+        for (int i = 0; i < totalAnswers; i++){
+            answers.add(ansIndex);
+        }
+    }
 }
