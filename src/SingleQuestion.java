@@ -19,7 +19,7 @@ public class SingleQuestion implements Question{
     @Override
     public void setAnswer(int[] num){
         if(num.length != 1){
-            throw new IndexOutOfBoundsException("SingleQuestion must only have 1 correct answer");
+            throw new IndexOutOfBoundsException("SingleQuestion must have 1 correct answer");
         }
         if(num[0] < 0 || num[0] > answers.size()){
             throw new IndexOutOfBoundsException("Correct answer must be between 0 to " + answers.size());
