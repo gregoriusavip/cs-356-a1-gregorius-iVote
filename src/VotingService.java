@@ -1,9 +1,9 @@
 import java.util.*;
 public class VotingService {
     private Question question;
-    private Map<String, Character> singleRecord = new HashMap<String, Character>();
-    private Map<String, List<Character>> multipleRecord = new HashMap<>();
-    private Map<Character, Integer> countAnswer = new HashMap<>();
+    private final Map<String, Character> singleRecord = new HashMap<String, Character>();
+    private final Map<String, List<Character>> multipleRecord = new HashMap<>();
+    private final Map<Character, Integer> countAnswer = new HashMap<>();
     public void createQuestion(int questionType, int totalAnswers, int[] answerKey){
         if(questionType == 0){
             question = new SingleQuestion();
@@ -34,8 +34,15 @@ public class VotingService {
         }
         multipleRecord.put(student.getStudentID(), validatedAnswer);
     }
-
-    private void calculateStatistic(char answer){
-
+    private void calculateStatistic(){
+        for (Character ans : singleRecord.values())
+            countAnswer.put(ans, countAnswer.get(ans) + 1);
+        for (List<Character> ans : multipleRecord.values())
+            for (char i : ans)
+                countAnswer.put(i, countAnswer.get(i) + 1);
+    }
+    public void printStatistic(){
+        calculateStatistic();
+        System.out.println(countAnswer.toString());
     }
 }

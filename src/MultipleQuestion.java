@@ -23,7 +23,7 @@ public class MultipleQuestion implements Question{
             throw new IndexOutOfBoundsException("Multiple Question must have maximum of " + answers.size() + "answer");
         }
         for (int j : num) {
-            if (j < 0 || j > answers.size()) {
+            if (j < 1 || j > answers.size()) {
                 throw new IndexOutOfBoundsException("Correct answer must be between 0 to " + answers.size());
             }
         }

@@ -21,8 +21,8 @@ public class SingleQuestion implements Question{
         if(num.length != 1){
             throw new IndexOutOfBoundsException("SingleQuestion must have 1 correct answer");
         }
-        if(num[0] < 0 || num[0] > answers.size()){
-            throw new IndexOutOfBoundsException("Correct answer must be between 0 to " + answers.size());
+        if(num[0] < 1 || num[0] > answers.size()){
+            throw new IndexOutOfBoundsException("Correct answer must be between 1 to " + answers.size());
         }
         else{
             this.key = num[0];
