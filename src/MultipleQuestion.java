@@ -2,7 +2,7 @@ import java.util.*;
 
 public class MultipleQuestion implements Question{
 
-    int[] key;
+    private int[] key;
     private List<Character> answers;
     @Override
     public void createQuestion(int totalAnswers){
@@ -14,14 +14,31 @@ public class MultipleQuestion implements Question{
         }
     }
     @Override
-    public List<Character> getAnswer(){
-        // Should instead return only the correct answer
-        return answers;
+    public int[] getAnswerKey(){
+        return key;
     }
     @Override
     public void setAnswer(int[] num){
         if(num.length > answers.size()){
-            throw new IndexOutOfBoundsException("SingleQuestion must only have 1 correct answer");
+            throw new IndexOutOfBoundsException("Multiple Question must have maximum of " + answers.size() + "answer");
         }
+        for (int j : num) {
+            if (j < 0 || j > answers.size()) {
+                throw new IndexOutOfBoundsException("Correct answer must be between 0 to " + answers.size());
+            }
+        }
+        this.key = num;
+    }
+    @Override
+    public List<Character> getAnswers() {
+        return answers;
+    }
+    @Override
+    public int getAnswerSize() {
+        return answers.size();
+    }
+    @Override
+    public String answerToString(){
+        return answers.toString();
     }
 }

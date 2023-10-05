@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class SingleQuestion implements Question{
-    int key;
+    private int key;
     private List<Character> answers;
     @Override
     public void createQuestion(int totalAnswers){
@@ -13,8 +13,8 @@ public class SingleQuestion implements Question{
         }
     }
     @Override
-    public List<Character> getAnswer(){
-        return answers;
+    public int[] getAnswerKey(){
+        return new int[]{key};
     }
     @Override
     public void setAnswer(int[] num){
@@ -27,5 +27,17 @@ public class SingleQuestion implements Question{
         else{
             this.key = num[0];
         }
+    }
+    @Override
+    public List<Character> getAnswers() {
+        return answers;
+    }
+    @Override
+    public int getAnswerSize(){
+        return answers.size();
+    }
+    @Override
+    public String answerToString(){
+        return answers.toString();
     }
 }
