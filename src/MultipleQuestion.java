@@ -18,13 +18,13 @@ public class MultipleQuestion implements Question{
         return key;
     }
     @Override
-    public void setAnswer(int[] num){
+    public void setAnswerKey(int[] num){
         if(num.length > answers.size()){
-            throw new IndexOutOfBoundsException("Multiple Question must have maximum of " + answers.size() + "answer");
+            throw new IllegalArgumentException("Multiple Question must have maximum of " + answers.size() + "answer");
         }
         for (int j : num) {
             if (j < 1 || j > answers.size()) {
-                throw new IndexOutOfBoundsException("Correct answer must be between 0 to " + answers.size());
+                throw new IllegalArgumentException("Correct answer must be between 0 to " + answers.size());
             }
         }
         this.key = num;
