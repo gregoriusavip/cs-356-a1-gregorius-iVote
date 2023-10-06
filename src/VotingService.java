@@ -47,7 +47,7 @@ public class VotingService {
     }
 
     /**
-     * process the answer of a student when the question is a SingleQuestion
+     * process the answer of a student when the question is a SingleQuestion object
      * @param student: takes a student object; student need to have a unique id; the same id will overwrite previous response
      * @param answer: takes the student answer; If answer is more than one element, only the last will be recorded
      */
@@ -55,7 +55,7 @@ public class VotingService {
         singleRecord.put(student.getStudentID(), answer.getLast());
     }
     /**
-     * process the answer of a student when the question is a SingleQuestion
+     * process the answer of a student when the question is a MultipleQuestion object
      * @param student: takes a student object; student need to have a unique id; the same id will overwrite previous response
      * @param answer: takes the student answers;
      */
