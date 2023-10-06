@@ -1,2 +1,3 @@
-#cs-356-a1-gregorius-iVote
+# iVote Simulation
+
 Simulate a voting poll in Java
