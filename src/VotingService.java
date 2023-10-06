@@ -48,21 +48,16 @@ public class VotingService {
 
     /**
      * process the answer of a student when the question is a SingleQuestion
-     * @param student: takes a student object; each student can only have one recorded submission;
-     * @param answer: takes the possible answer; If answer is more than one element, only the last will be recorded
+     * @param student: takes a student object; student need to have a unique id; the same id will overwrite previous response
+     * @param answer: takes the student answer; If answer is more than one element, only the last will be recorded
      */
     private void answerSingle(Student student, List<Character> answer){
-        for (char c : answer) {
-            if (question.answerToString().indexOf(c) != -1) {
-                // If multiple answer given, take the latest answer
-                singleRecord.put(student.getStudentID(), c);
-            }
-        }
+        singleRecord.put(student.getStudentID(), answer.getLast());
     }
     /**
      * process the answer of a student when the question is a SingleQuestion
-     * @param student: takes a student object
-     * @param answer: takes the possible answer; If answer is more than one element, only the last will be recorded
+     * @param student: takes a student object; student need to have a unique id; the same id will overwrite previous response
+     * @param answer: takes the student answers;
      */
     private void answerMultiple(Student student, List<Character> answer){
         List<Character> charList = new LinkedList<>();
