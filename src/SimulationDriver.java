@@ -21,7 +21,7 @@ public class SimulationDriver {
             answerList.add(charAnswer);
         }
         VotingService service = new VotingService();
-        service.createQuestion(random.nextInt(2), RANDOM_TOTAL_ANSWERS, new int[]{1});
+        service.createQuestion(random.nextInt(2), RANDOM_TOTAL_ANSWERS, new int[]{1, 3});
         for(Student student : studentList){
             service.studentAnswer(student, answerList.getFirst());
             answerList.removeFirst();

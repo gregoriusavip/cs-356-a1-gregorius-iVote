@@ -91,6 +91,7 @@ public class VotingService {
      */
     public void printStatistic(){
         AtomicInteger count = new AtomicInteger();
+        int[] answerKey = question.getAnswerKey();
         if(qType == QuestionType.SINGLE){
             System.out.println("Question Type: Single Answer");
         }
@@ -100,9 +101,15 @@ public class VotingService {
         calculateStatistic();
         System.out.println((multipleRecord.size() + singleRecord.size()) + " students on the record");
         countAnswer.forEach((key, val) -> {
-            System.out.println(key + ": " + val);
-            count.addAndGet(val);
+            System.out.print(key + ": " + val);
+            for(int num : answerKey){
+                if(key == ((char)num + '@')){
+                    System.out.print(" (Correct)");
                 }
+            }
+            count.addAndGet(val);
+            System.out.println();
+        }
         );
         System.out.println("Total valid answers: " + count);
     }
