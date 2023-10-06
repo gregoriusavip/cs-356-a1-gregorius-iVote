@@ -53,6 +53,7 @@ public class VotingService {
      */
     private void answerSingle(Student student, List<Character> answer){
         singleRecord.put(student.getStudentID(), answer.getLast());
+        System.out.println(student.getStudentID() + " answered: " + answer.getLast());
     }
     /**
      * process the answer of a student when the question is a MultipleQuestion object
@@ -68,6 +69,7 @@ public class VotingService {
         }
         Set<Character> validatedAnswer = new HashSet<>(charList);   //remove duplicates
         multipleRecord.put(student.getStudentID(), validatedAnswer);
+        System.out.println(student.getStudentID() + " answered: " + validatedAnswer);
     }
     /**
      * set the map countAnswer for recording students answer
@@ -84,6 +86,7 @@ public class VotingService {
      * print the statistic of the answers to the terminal
      */
     public void printStatistic(){
+        System.out.println();
         AtomicInteger count = new AtomicInteger();
         if(qType == QuestionType.SINGLE){
             System.out.println("Question Type: Single Answer");
