@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Set;
 
 public interface Question {
     /**
@@ -11,16 +12,16 @@ public interface Question {
      * if the object is a single question, the array will be a single element
      * otherwise, it will be 1 or more
      * 0 corresponds to 'A', 1: 'B' and so on
-     * @return array of int
+     * @return Set of int
      */
-    int[] getAnswerKey();
+    Set<Integer> getAnswerKey();
 
     /**
      * set the correct answer key
      * each element corresponds to the correct answer and within the range of maximum choices
      * @param n: must be at least one element and in range of maximum total answer choices
      */
-    void setAnswerKey(int[] n);
+    void setAnswerKey(Set<Integer> n);
 
     /**
      *

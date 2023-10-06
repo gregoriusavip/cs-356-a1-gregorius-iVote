@@ -5,7 +5,7 @@ public class VotingService {
     private Question question;
     private QuestionType qType = QuestionType.NONE;
     private final Map<String, Character> singleRecord = new HashMap<String, Character>();
-    private final Map<String, List<Character>> multipleRecord = new HashMap<>();
+    private final Map<String, Set<Character>> multipleRecord = new HashMap<>();
     private final Map<Character, Integer> countAnswer = new HashMap<>();
 
     /**
@@ -14,7 +14,7 @@ public class VotingService {
      * @param totalAnswers: takes at least 1 or more possible answer choices
      * @param answerKey: takes at least one element with maximum of totalAnswers
      */
-    public void createQuestion(int questionType, int totalAnswers, int[] answerKey){
+    public void createQuestion(int questionType, int totalAnswers, Set<Integer> answerKey){
         if(questionType == 0){
             question = new SingleQuestion();
             qType = QuestionType.SINGLE;
@@ -67,12 +67,13 @@ public class VotingService {
      * @param answer: takes the possible answer; If answer is more than one element, only the last will be recorded
      */
     private void answerMultiple(Student student, List<Character> answer){
-        List<Character> validatedAnswer = new LinkedList<>();
+        List<Character> charList = new LinkedList<>();
         for (char c : answer){
             if(question.answerToString().indexOf(c) != -1){
-                validatedAnswer.add(c);
+                charList.add(c);
             }
         }
+        Set<Character> validatedAnswer = new HashSet<>(charList);   //remove duplicates
         multipleRecord.put(student.getStudentID(), validatedAnswer);
     }
     /**
@@ -81,7 +82,7 @@ public class VotingService {
     private void calculateStatistic(){
         for (Character ans : singleRecord.values())
             countAnswer.put(ans, countAnswer.get(ans) + 1);
-        for (List<Character> ans : multipleRecord.values())
+        for (Set<Character> ans : multipleRecord.values())
             for (char i : ans)
                 countAnswer.put(i, countAnswer.get(i) + 1);
     }
@@ -91,7 +92,7 @@ public class VotingService {
      */
     public void printStatistic(){
         AtomicInteger count = new AtomicInteger();
-        int[] answerKey = question.getAnswerKey();
+        Set<Integer> answerKey = question.getAnswerKey();
         if(qType == QuestionType.SINGLE){
             System.out.println("Question Type: Single Answer");
         }
