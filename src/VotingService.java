@@ -12,9 +12,8 @@ public class VotingService {
      * create a question object
      * @param questionType: takes either 0 or 1 that corresponds to SingleQuestion or MultipleQuestion
      * @param totalAnswers: takes at least 1 or more possible answer choices
-     * @param answerKey: takes at least one element with maximum of totalAnswers
      */
-    public void createQuestion(int questionType, int totalAnswers, Set<Integer> answerKey){
+    public void createQuestion(int questionType, int totalAnswers){
         if(questionType == 0){
             question = new SingleQuestion();
             qType = QuestionType.SINGLE;
@@ -27,7 +26,6 @@ public class VotingService {
             throw new IllegalArgumentException("Question type has to be 0 or 1");
         }
         question.createQuestion(totalAnswers);
-        question.setAnswerKey(answerKey);
         for(int i = 0; i < question.getAnswerSize(); i++){
             countAnswer.put(question.getAnswers().get(i), 0);
         }
@@ -92,7 +90,6 @@ public class VotingService {
      */
     public void printStatistic(){
         AtomicInteger count = new AtomicInteger();
-        Set<Integer> answerKey = question.getAnswerKey();
         if(qType == QuestionType.SINGLE){
             System.out.println("Question Type: Single Answer");
         }
@@ -102,14 +99,8 @@ public class VotingService {
         calculateStatistic();
         System.out.println((multipleRecord.size() + singleRecord.size()) + " students on the record");
         countAnswer.forEach((key, val) -> {
-            System.out.print(key + ": " + val);
-            for(int num : answerKey){
-                if(key == ((char)num + '@')){
-                    System.out.print(" (Correct)");
-                }
-            }
+            System.out.println(key + ": " + val);
             count.addAndGet(val);
-            System.out.println();
         }
         );
         System.out.println("Total valid answers: " + count);

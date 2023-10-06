@@ -5,7 +5,6 @@ public class SimulationDriver {
         final int RANDOM_STUDENT = random.nextInt(40) + 1;
         final int RANDOM_TOTAL_ANSWERS = random.nextInt(12) + 1;
         final int RANDOM_QUESTION_TYPE = random.nextInt(2);
-        Set<Integer> answerKey;
         List<Student> studentList = new LinkedList<>();
         List<List<Character>> answerList = new LinkedList<>();
         for(int i = 0 ; i < RANDOM_STUDENT; i++){   // generate random amount of student
@@ -19,16 +18,8 @@ public class SimulationDriver {
             }
             answerList.add(charAnswer);
         }
-        answerKey = new HashSet<>();
-        if(RANDOM_QUESTION_TYPE == 0){
-            answerKey.add(random.nextInt(RANDOM_TOTAL_ANSWERS) + 1);
-        }
-        else{
-            answerKey.add(random.nextInt(RANDOM_TOTAL_ANSWERS) + 1);
-            answerKey.add(random.nextInt(RANDOM_TOTAL_ANSWERS) + 1);
-        }
         VotingService service = new VotingService();
-        service.createQuestion(RANDOM_QUESTION_TYPE, RANDOM_TOTAL_ANSWERS, answerKey);
+        service.createQuestion(RANDOM_QUESTION_TYPE, RANDOM_TOTAL_ANSWERS);
         for(Student student : studentList){
             service.studentAnswer(student, answerList.getFirst());
             answerList.removeFirst();

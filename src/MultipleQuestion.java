@@ -1,8 +1,6 @@
 import java.util.*;
 
 public class MultipleQuestion implements Question{
-
-    private Set<Integer> key;
     private List<Character> answers;
     @Override
     public void createQuestion(int totalAnswers){
@@ -12,22 +10,6 @@ public class MultipleQuestion implements Question{
             answers.add(ansIndex);
             ansIndex += 1;
         }
-    }
-    @Override
-    public Set<Integer> getAnswerKey(){
-        return key;
-    }
-    @Override
-    public void setAnswerKey(Set<Integer> num){
-        if(num.size() > answers.size()){
-            throw new IllegalArgumentException("Multiple Question must have maximum of " + answers.size() + "answer");
-        }
-        for (int j : num) {
-            if (j < 1 || j > answers.size()) {
-                throw new IllegalArgumentException("Correct answer must be between 1 to " + answers.size());
-            }
-        }
-        this.key = num;
     }
     @Override
     public List<Character> getAnswers() {
