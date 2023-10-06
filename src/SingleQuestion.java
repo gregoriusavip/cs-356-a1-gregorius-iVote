@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class SingleQuestion implements Question{
-    private int key;
+    private Set<Integer> key;
     private List<Character> answers;
     @Override
     public void createQuestion(int totalAnswers){
@@ -13,20 +13,20 @@ public class SingleQuestion implements Question{
         }
     }
     @Override
-    public int[] getAnswerKey(){
-        return new int[]{key};
+    public Set<Integer> getAnswerKey(){
+        return key;
     }
     @Override
-    public void setAnswerKey(int[] num){
-        if(num.length != 1){
+    public void setAnswerKey(Set<Integer> num){
+        if(num.size() != 1){
             throw new IllegalArgumentException("SingleQuestion must have 1 correct answer");
         }
-        if(num[0] < 1 || num[0] > answers.size()){
-            throw new IllegalArgumentException("Correct answer must be between 1 to " + answers.size());
+        for(int val : num){
+            if(val < 1 || val > answers.size()){
+                throw new IllegalArgumentException("Correct answer must be between 1 to " + answers.size());
+            }
         }
-        else{
-            this.key = num[0];
-        }
+        this.key = num;
     }
     @Override
     public List<Character> getAnswers() {

@@ -2,7 +2,7 @@ import java.util.*;
 
 public class MultipleQuestion implements Question{
 
-    private int[] key;
+    private Set<Integer> key;
     private List<Character> answers;
     @Override
     public void createQuestion(int totalAnswers){
@@ -14,17 +14,17 @@ public class MultipleQuestion implements Question{
         }
     }
     @Override
-    public int[] getAnswerKey(){
+    public Set<Integer> getAnswerKey(){
         return key;
     }
     @Override
-    public void setAnswerKey(int[] num){
-        if(num.length > answers.size()){
+    public void setAnswerKey(Set<Integer> num){
+        if(num.size() > answers.size()){
             throw new IllegalArgumentException("Multiple Question must have maximum of " + answers.size() + "answer");
         }
         for (int j : num) {
             if (j < 1 || j > answers.size()) {
-                throw new IllegalArgumentException("Correct answer must be between 0 to " + answers.size());
+                throw new IllegalArgumentException("Correct answer must be between 1 to " + answers.size());
             }
         }
         this.key = num;
